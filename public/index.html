@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library Management System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <h2>📚 BookNest</h2>
+    <p>LIBRARY MANAGEMENT</p>
+    <button class="nav active" data-page="dashboard">⌂ Dashboard</button>
+    <button class="nav" data-page="books">▤ Books</button>
+    <button class="nav" data-page="members">♙ Members</button>
+    <button class="nav" data-page="issue">⇄ Issue / Return</button>
+    <button class="nav" data-page="records">☷ Records & Fines</button>
+    <div class="side-bottom">Library Admin Portal</div>
+  </aside>
+
+  <main class="main">
+    <header>
+      <div>
+        <h1 id="page-title">Dashboard</h1>
+        <p>Manage your library in one place.</p>
+      </div>
+      <span class="admin">👤 Admin</span>
+    </header>
+
+    <div id="message" role="status"></div>
+
+    <section id="dashboard" class="page">
+      <div class="stats">
+        <article><span>Total Book Copies</span><strong id="totalBooks">0</strong></article>
+        <article><span>Book Titles</span><strong id="titles">0</strong></article>
+        <article><span>Members</span><strong id="membersCount">0</strong></article>
+        <article><span>Books Issued</span><strong id="issued">0</strong></article>
+        <article><span>Overdue Books</span><strong id="overdue">0</strong></article>
+        <article><span>Total Fines (₹)</span><strong id="fines">0</strong></article>
+      </div>
+      <div class="panel">
+        <h2>Welcome to BookNest 📖</h2>
+        <p>Add books and members first. Then issue books and track returns, due dates, and fines here.</p>
+        <div class="quick">
+          <button onclick="showPage('books')">＋ Add Books</button>
+          <button onclick="showPage('members')">＋ Add Members</button>
+          <button onclick="showPage('issue')">⇄ Issue a Book</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="books" class="page hidden">
+      <div class="panel">
+        <h2>Add New Book</h2>
+        <form id="bookForm" class="form-grid">
+          <input name="title" placeholder="Book title" required>
+          <input name="author" placeholder="Author name" required>
+          <input name="isbn" placeholder="ISBN (optional)">
+          <input name="quantity" type="number" min="1" value="1" required>
+          <button type="submit">Add Book</button>
+        </form>
+      </div>
+      <div class="panel">
+        <div class="section-head">
+          <h2>Book Collection</h2>
+          <input id="bookSearch" placeholder="Search title, author, ISBN...">
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>ID</th><th>Book</th><th>Author</th><th>ISBN</th><th>Total</th><th>Available</th><th>Action</th></tr></thead>
+            <tbody id="bookRows"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="members" class="page hidden">
+      <div class="panel">
+        <h2>Register Member</h2>
+        <form id="memberForm" class="form-grid">
+          <input name="name" placeholder="Member name" required>
+          <input name="email" type="email" placeholder="Email address" required>
+          <input name="phone" placeholder="Phone number (optional)">
+          <button type="submit">Add Member</button>
+        </form>
+      </div>
+      <div class="panel">
+        <h2>Library Members</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Phone</th></tr></thead>
+            <tbody id="memberRows"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="issue" class="page hidden">
+      <div class="panel">
+        <h2>Issue a Book</h2>
+        <p>Each issue has a 14-day loan period. Late fine: ₹5 per day.</p>
+        <form id="issueForm" class="form-grid">
+          <select name="bookId" id="bookSelect" required>
+            <option value="">Select book</option>
+          </select>
+          <select name="memberId" id="memberSelect" required>
+            <option value="">Select member</option>
+          </select>
+          <button type="submit">Issue Book</button>
+        </form>
+      </div>
+      <div class="panel">
+        <h2>Books Currently Issued</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Book</th><th>Member</th><th>Issue Date</th><th>Due Date</th><th>Fine (₹)</th><th>Action</th></tr></thead>
+            <tbody id="activeRows"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="records" class="page hidden">
+      <div class="panel">
+        <h2>Issue & Return History</h2>
+        <p>Overdue fines are calculated at ₹5 per day. Returned books keep their final late fine in the history.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Book</th><th>Member</th><th>Issued</th><th>Due</th><th>Returned</th><th>Fine (₹)</th><th>Status</th></tr></thead>
+            <tbody id="recordRows"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+    <footer>BookNest · Library Management System</footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

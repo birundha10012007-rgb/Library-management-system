@@ -1,0 +1,30 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "title": "Deep work",
+      "author": "morgan houssel",
+      "isbn": "234",
+      "quantity": 6,
+      "available": 5
+    }
+  ],
+  "members": [
+    {
+      "id": 1,
+      "name": "birundha",
+      "email": "birundha10012007@gmail.com",
+      "phone": "8925073814"
+    }
+  ],
+  "loans": [
+    {
+      "id": 1,
+      "bookId": 1,
+      "memberId": 1,
+      "issueDate": "2026-10-14",
+      "dueDate": "2026-10-28",
+      "returnDate": null
+    }
+  ]
+}
